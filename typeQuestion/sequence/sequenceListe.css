@@ -1,0 +1,50 @@
+.divSequenceListe{
+	width:595px;
+	padding-bottom:20px;
+	margin-bottom:20px;
+}
+
+.sequenceListe{		
+	display:inline-block;
+	
+	border: 1px solid #ccc;
+		
+	-moz-border-radius:15px;
+	border-radius:15px;
+	-webkit-border-radius:15px;
+	padding:5px 15px 5px 10px;
+	
+	margin-left: auto;
+	margin-right: auto;
+	
+	
+}
+.divUneSequenceList{
+	
+	padding-top:10px;
+	
+	text-align:center;	
+	display:block;
+	min-height:30px;
+
+}
+.sequenceListeGA{
+	color:#006600;
+	opacity:0;	
+	text-align:center;
+	margin-top:5px;
+	padding-top:5px;
+	padding-left:5px;	
+	display: block;
+}
+.sequenceListeWA{
+	color:#993300;
+	z-index:2;	
+	text-align:center;
+	margin-top:5px;
+	padding-top:5px;
+	padding-left:5px;
+	display:block;
+
+}
+

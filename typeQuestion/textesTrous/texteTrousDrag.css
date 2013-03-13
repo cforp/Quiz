@@ -1,0 +1,40 @@
+.divDraggables{
+	clear:both;
+	display:inline-block;
+	margin-bottom:15px;
+	margin-top:50px;
+	min-height:40px;
+}
+
+.divTexteTrouDrag{
+	display:inline-block;
+	line-height:40px;
+}
+
+.divTexteTrouDrag .boutPhrase{
+	display:inline-block;
+	line-height:40px;
+}
+
+.unDivDraggable{
+	margin-right:10px;
+	display:inline-block;
+	margin-bottom:10px;
+}
+
+.ui-droppable.droppable-plein{		
+	display:inline-block;
+	border:none;
+	padding:0px;
+	width:auto;	
+	
+	min-height:20px;	
+}
+
+.texteTrouDragWA{
+	display:inline-block;
+	
+	padding-left:5px;
+	padding-right:15px;
+	
+}

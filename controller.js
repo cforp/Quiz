@@ -114,11 +114,9 @@ function initScorm(){
 	if(isNaN(this.lesson_location)){
 		this.lesson_location = 0;
 		this.currentSlide = -1;
-		this.previousSlideID = -1;
 	}
 	else{
 		this.currentSlide = this.lesson_location - 1;
-		this.previousSlideID = this.lesson_location -1;
 	}
 	
 	//console.log("lesson_location: " + this.lesson_location + ", currentSlide: " + this.currentSlide);
@@ -140,7 +138,6 @@ function setQuiz(){
 	this.maxScore = 0;
 	this.maxSlide = this.questionSource.length;
 	this.currentSlide = -1;
-	this.previousSlideID = -1;
 	this.quizScore = 0;
 	
 	this.interactionNum = 0;
@@ -186,9 +183,6 @@ function setQuiz(){
 		if(this.slideArray[i].slideSuspendData != null ){
 			if(this.slideArray[i].input.questionSlide){		
 				window[this.slideArray[i].input.questionType].loadUserAnswer(this.slideArray[i].interaction, this.slideArray[i].slideSuspendData.resume);
-				//suspend = new Array();
-				//suspend[0] = 0;
-				window[this.slideArray[i].input.questionType].loadUserAnswer(this.slideArray[i].interaction, suspend);
 				window[this.slideArray[i].input.questionType].disableQuestion(this.slideArray[i].interaction);
 				window[this.slideArray[i].input.questionType].displayAnswer(this.slideArray[i].interaction, this.slideArray[i].input.answerArray);
 				loadUserQuiz = true;
@@ -206,26 +200,25 @@ function setQuiz(){
 };
 
 function startQuiz(){	
-	if(slideArray.length > 0){			
-		this.goToSlide(this.lesson_location);
+	if(slideArray.length > 0){		
+		this.quizNavigation.push(this.lesson_location+1);
+		//this.goToSlide(this.lesson_location);
+		this.goToSlide(this.quizNavigation[this.lesson_location]);
 	}
 };
 
 function goToSlide(to){
-	
+	//console.log("dans goToSlide this.currentSlide = " + this.currentSlide + "   to = " + to);
 	if(this.slideArray[this.currentSlide] != undefined){
 		this.slideArray[this.currentSlide].stopAllSlidePlayer();		
-	}	
+	}
+	
 	this.setSessionTime();
 	//make sure the slide we go to exists
 	if(this.slideArray[to] != null && this.slideArray[to] != undefined){
-	
+			
 		if(this.currentSlide != -1){
 			$(this.slideArray[this.currentSlide].slideDiv).css("display","none");
-		}
-		else if(this.lastSlide.generated){
-						
-			$(this.lastSlide.div).css('display','none');
 		}
 		
 		//clear buttons
@@ -284,15 +277,9 @@ function goToSlide(to){
 			$(document.getElementById("question_status_img")).css("display","none");
 			$(document.getElementById("question_status_text")).html("");			
 		}		
-		$(this.slideArray[to].slideDiv).fadeTo("fast", 0,function(){
-				$(this).css({opacity:1});
-			});		
-		//$(this.slideArray[to].slideDiv).css({opacity:1});		
-				
-		//$(this.slideArray[to].slideDiv).animate({width:'toggle'},'slow');
-		$(this.slideArray[to].slideDiv).css("display","block");
 		
-		this.previousSlideID = this.currentSlide;		
+		$(slideArray[to].slideDiv).animate({width:'toggle'},'slow');
+		$(this.slideArray[to].slideDiv).css("display","block");
 		this.currentSlide = to;
 		
 		
@@ -308,7 +295,7 @@ function goToSlide(to){
 	}
 	else{
 		//generate slide
-		
+		//console.log("il faut générer la dernière slide");
 		if(to == this.slideArray.length){//result "slide"
 			$(this.slideArray[this.currentSlide].slideDiv).css("display","none");
 			
@@ -347,16 +334,11 @@ function goToSlide(to){
 			$(document.getElementById("question_status_text")).html("");
 			
 						
-			//$(this.lastSlide.div).css({width:'toggle'},'slow');
-			//$(this.lastSlide.div).animate({width:'toggle'},'slow');
-			$(this.lastSlide.div).fadeTo("fast", 0,function(){
-				$(this).css({opacity:1});
-			});			
+			$(this.lastSlide.div).animate({width:'toggle'},'slow');
 			
 			
 			$(this.lastSlide.div).css("display","block");
 			
-			this.previousSlideID = this.currentSlide;
 			this.currentSlide = to;			
 			
 			if(this.pushToLMS){
@@ -368,23 +350,59 @@ function goToSlide(to){
 };
 
 
-
+// function nextSlide(nextSlideID){	
+	// var nextSlide;
+// 	
+	// //console.log("quizNavigation length = " + quizNavigation.length);
+	// console.log("nextSlideID = " + nextSlideID + "    dans le tableau next = " + quizNavigation[quizNavigation.length-1]);
+	// if(nextSlideID != undefined){
+			// nextSlide = nextSlideID;			
+	// }
+	// else {
+		// nextSlide = this.currentSlide+1
+	// };	
+// 	
+	// $(this.slideArray[this.currentSlide].slideDiv).animate({width:'toggle'},'slow', function(){		
+		// goToSlide(nextSlide);
+	// });
+// 	
+// };
 function nextSlide(nextSlideID){	
 	var nextSlide;	
 	
-	// vérifier si on a déjà créé le parcours	
-	
-	nextSlide = nextSlideID;
+	// on vient d'une slide de contenu (bouton next)
+	if(nextSlideID == 0){	
+		nextSlide = this.currentSlide+1;		
+	}
+	else{		
+		//nextSlide = nextSlideID;
+		nextSlide = nextSlideID;
 		
+	}
+	console.log("dans nextSlide nextSlideID = " + nextSlide + "   currentSlide = " + this.currentSlide);	
 	$(this.slideArray[this.currentSlide].slideDiv).animate({width:'toggle'},'slow', function(){				
 		goToSlide(nextSlide);
 	});
 	
 };
-
-function previousSlide(previousSlideID){	
+
+
+
+// function previousSlide(){
+	// var previousSlide = this.currentSlide-1;
+// 	
+// 	
+	// $(this.slideArray[this.currentSlide].slideDiv).animate({width:'toggle'},'slow', function(){
+		// goToSlide(previousSlide);
+	// });	
+// 	
+// };
+function previousSlide(previousSlide){
+	//var previousSlide = this.currentSlide-1;
+	
+	console.log("previousSlide = " + previousSlide);
 	$(this.slideArray[this.currentSlide].slideDiv).animate({width:'toggle'},'slow', function(){
-		goToSlide(previousSlideID);
+		goToSlide(previousSlide);
 	});	
 	
 };
@@ -456,13 +474,9 @@ function validateAnswer(){
 					if(this.slideArray[this.currentSlide].input.branching){
 						nextSlideID = this.slideArray[this.currentSlide].input.nextSlideIDWA;
 					}	
-					quizNavigation[pointeurNavigation] = new Array();
-					quizNavigation[pointeurNavigation].previousSlide = previousSlideID;
-					quizNavigation[pointeurNavigation].nextSlide = nextSlideID;
-					pointeurNavigation++;					
-					
-					this.nextSlide(nextSlideID);
-					resizeMyScorm();	
+					console.log("on met dans quizNavigation " + nextSlideID);
+					this.quizNavigation.push(nextSlideID);
+					this.nextSlide(nextSlideID);	
 					
 				});
 			}
@@ -475,13 +489,9 @@ function validateAnswer(){
 					if(this.slideArray[this.currentSlide].input.branching){
 						nextSlideID = this.slideArray[this.currentSlide].input.nextSlideIDGA;
 					}	
-					quizNavigation[pointeurNavigation] = new Array();
-					quizNavigation[pointeurNavigation].previousSlide = previousSlideID;
-					quizNavigation[pointeurNavigation].nextSlide = nextSlideID;
-					pointeurNavigation++;					
-					
-					this.nextSlide(nextSlideID);
-					resizeMyScorm();	
+					console.log("on met dans quizNavigation " + nextSlideID);
+					this.quizNavigation.push(nextSlideID);
+					this.nextSlide(nextSlideID);	
 				});
 			}	
 			
@@ -498,14 +508,13 @@ function reviewQuiz(){
 		}
 	}
 	
-	$(document.getElementById("review_quiz")).css("display","none");	
-	this.currentSlide = -1;
+	$(document.getElementById("review_quiz")).css("display","none");
 	
-	// pour parcourir le tableau de navigation quizNavigation il faut remettre le pointeur à 0
-		pointeurNavigation = 0;
-			
-	goToSlide(0);		
+	this.currentSlide = -1;	
 	
+	$(this.lastSlide.div).animate({width:'toggle'},'slow',function(){		
+		goToSlide(0);		
+	});
 	
 };
 

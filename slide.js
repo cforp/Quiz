@@ -269,18 +269,9 @@ Slide.prototype.formatMedia = function(mediaArray, mediaContainer){
 					
 					if(imagePreview != undefined && imagePreview != null){						
 						var imagePreviewLocation = newMedia.mediaSetting.imagePreviewLocation;						
-						html+="<div><img  id=\"" + id +"\" src=\""+imagePreviewLocation +"/"+imagePreview+"\" "+ "style=\"height:"+height+"px; width:"+width+"px;\" />";		
+						html+="<img  id=\"" + id +"\" src=\""+imagePreviewLocation +"/"+imagePreview+"\" "+ "style=\"height:"+height+"px; width:"+width+"px;\" />";		
 					}else{						
-						html+="<div><img  id=\"" + id +"\" src=\""+location+"/"+value+"\" "+ "style=\"height:"+height+"px; width:"+width+"px;\" />";		
-					}
-					
-					if(browserIE){
-						html+="<div style=\"top:-100px; \" class=\"imagePreview\"></div>";
-					}
-					else{
-						//html+="<div style=\"top:-40px; \" class=\"imagePreview\"></div>";
-						
-						html+="<div class=\"imagePreview\"></div></div>";
+						html+="<img  id=\"" + id +"\" src=\""+location+"/"+value+"\" "+ "style=\"height:"+height+"px; width:"+width+"px;\" />";		
 					}
 					
 					html+="</a>";
@@ -292,10 +283,7 @@ Slide.prototype.formatMedia = function(mediaArray, mediaContainer){
 			
 			case "video" :
 				var id = newMedia.id;				
-				var fancy = newMedia.mediaSetting.fancy;	
-				var width = newMedia.mediaSetting.width;
-				var height = newMedia.mediaSetting.height;
-											
+				var fancy = newMedia.mediaSetting.fancy;								
 				if(fancy){
 					var imagePreview = newMedia.mediaSetting.imagePreview;					
 					var browserIE = $.browser.msie;
@@ -306,15 +294,14 @@ Slide.prototype.formatMedia = function(mediaArray, mediaContainer){
 					if(imagePreview!=undefined && imagePreview!=null){
 						var imagePreviewLocation = newMedia.mediaSetting.imagePreviewLocation;
 						if(imagePreviewLocation == undefined || imagePreviewLocation == null) {
-							//html+="<img width='100px' height='100px' src='"+ imagePreview +"' />";	
-							html+="<img width='" + width + "px' height='" + height + "px' src='"+ imagePreview +"' />";
+							html+="<img width='100px' height='100px' src='"+ imagePreview +"' />";	
 						}else{
 							html+="<img width='100px' height='100px' src='"+ imagePreviewLocation + "/" + imagePreview +"' />";
 						}
 						
 							
 					}else{
-						html+="<img width='" + width + "px' height='" + height + "px' src='image/videoImagePreviewDef.jpg' />";
+						html+="<img width='100px' height='100px' src='image/videoImagePreviewDef.jpg' />";
 					}
 					
 					if(browserIE){
@@ -324,13 +311,24 @@ Slide.prototype.formatMedia = function(mediaArray, mediaContainer){
 						html+="<div style=\"top:-85px; \" class=\"videoImagePreview\"></div>";
 					}
 						
+					//html+="play movie";
+					//html+="<img width='100px' height='100px' src='image/Koala.jpg' /><div class=\"videoImagePreview\"></div>";
 					html+="</a>";
 					
 				}
 				else{
 					html += "<div id=\""+id+"\"> Chargement en cours...</div>";
-				}				
+				}
 				
+				/*html += "<div style=\"display:none\"><div id =\"fancy_" + id + "\" > <div id=\""+id+"\"> Chargement en cours...</div></div></div>";
+				if(fancy){
+					html += "<a href=\"#fancy_"+id+"\" class=\"video\">";
+				}
+				html+="play movie";
+				if(fancy){
+					html+="</a>";
+				}*/
+			 	
 			break;
 			
 			case "audio" :
@@ -339,10 +337,12 @@ Slide.prototype.formatMedia = function(mediaArray, mediaContainer){
 			break;
 		}
 		var mediaElem = document.createElement("div");
+		//$(mediaElem).toggleClass("mediaElem");
+		//$(mediaElem).css("float","left");
 		mediaElem.innerHTML = html;
 		
 		var listItem = document.createElement("div");
-		
+		//$(listItem).css("listStyle","none");
 		$(listItem).css("margin","auto");
 		$(listItem).css("textAlign","center");
 		$(listItem).css("padding","5");
@@ -352,6 +352,9 @@ Slide.prototype.formatMedia = function(mediaArray, mediaContainer){
 		
 	}
 	mediaContainer.appendChild(list);
+	//var clearBothDiv = document.createElement("div");
+	//clearBothDiv.style.clear ="both";
+	//mediaContainer.appendChild(clearBothDiv);
 	return mediaContainer;
 };
 

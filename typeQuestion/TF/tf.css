@@ -1,0 +1,3 @@
+.TFOptionValue {height:30px; min-width: 200px; }
+.TFcorrectAnswer{height:30px; background-image:url('image/true.png'); background-repeat:no-repeat;}
+.TFincorrectAnswer{height:30px; background-image:url('image/false.png'); background-repeat:no-repeat;}

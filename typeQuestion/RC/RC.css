@@ -1,0 +1,54 @@
+.divRC{		
+	display:block;
+	padding-bottom:20px;
+	line-height:40px;
+}
+.divRC form{
+	display:inline-block;
+}
+
+.divRC .inputRC{
+	display:inline-block;
+	background-color:#CCCCCC;
+	color:#333333;
+	z-index:1;
+}
+div.divRC form input{
+	margin-left:10px;
+	-webkit-user-select: auto;
+}
+div.divRC form input:text{
+	
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;	
+	
+	background: #ededed;
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	
+	border:1px solid #dcdcdc;
+	color:#666;
+	height:20px;
+	padding-left:5px;
+
+}
+div.divRC form input:button{
+	width:80px;
+}
+
+
+
+.divRC .boutPhrase{
+	display:inline-block;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:5px;	
+}
+.RCWA{
+	display:inline-block;
+	color:#006600;
+	margin-left:10px;
+	font-weight:bold;
+}

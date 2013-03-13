@@ -1,0 +1,4 @@
+*{outline:none;}
+.marker{position:absolute; z-index:9999; cursor:pointer;}
+.mapImage{max-width:600px; cursor:pointer;}
+

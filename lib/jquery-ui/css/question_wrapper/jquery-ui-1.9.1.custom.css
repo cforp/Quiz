@@ -58,7 +58,7 @@
 /* droppable - draggable */
 .ui-droppable, .ui-draggable{
 	display:inline-block;	
-	padding:5px 5px;
+	padding:5px 0px;
 
 	min-height:20px;	
 	min-width:100px;
@@ -273,10 +273,7 @@ body .ui-tooltip { border-width: 2px; }
 #question_wrapper .ui-state-active, #question_wrapper .ui-widget-content .ui-state-active, #question_wrapper .ui-widget-header .ui-state-active { /*border: 1px solid #aaaaaa;*/ background: #00aaff url(images/ui-bg_glass_70_00aaff_1x400.png) 50% 50% repeat-x; font-weight: normal; color: #ffffff; }
 #question_wrapper .ui-state-active a, #question_wrapper .ui-state-active a:link, #question_wrapper .ui-state-active a:visited { color: #ffffff; text-decoration: none; }
 
-#question_wrapper .divAssMatch .ui-state-error{
-	background:url(images/ui-bg_glass_70_rouge_1x400.png) repeat-x scroll 50% 50% #993300;
-	color:#FFFFFF;
-}
+
 #question_wrapper .ui-droppable.ui-state-active{
 	-moz-border-radius-bottomright:0px;
 	-webkit-border-bottom-right-radius:0px;
@@ -328,14 +325,7 @@ body .ui-tooltip { border-width: 2px; }
 	min-height:100px;
 }
 
-#question_wrapper .ui-assMatch.ui-state-active{
-	background: url(images/ui-bg_glass_70_vert_1x400.png) repeat-x scroll 50% 50% #36843c;
-	color:#ffffff;	
-}
-#question_wrapper .ui-assMatch.ui-state-error{
-	background:  #ff0000;
-	color:#ffffff;	
-}
+
 
 /* Icons
 ----------------------------------*/

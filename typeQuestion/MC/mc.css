@@ -1,0 +1,3 @@
+.MCOptionValue {height:30px; min-width: 200px; }
+.MCcorrectAnswer{height:30px; background-image:url('image/true.png'); background-repeat:no-repeat;}
+.MCincorrectAnswer{height:30px; background-image:url('image/false.png'); background-repeat:no-repeat;}
