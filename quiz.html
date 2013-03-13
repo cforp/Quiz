@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Quiz</title>
+		<link rel="stylesheet" type="text/css" href="css/master.css" media="screen" />		
+		<link rel="stylesheet" type="text/css" href="typeQuestion/TF/tf.css" />
+		<link rel="stylesheet" type="text/css" href="typeQuestion/MC/mc.css" />
+		<link rel="stylesheet" type="text/css" href="typeQuestion/MR/mr.css" />
+		<link rel="stylesheet" type="text/css" href="typeQuestion/association/association.css" />
+		<link rel="stylesheet" type="text/css" href="typeQuestion/HS/hotSpot.css" />
+		<link rel="stylesheet" type="text/css" href="typeQuestion/sequence/sequenceDD.css" />
+        <link rel="stylesheet" type="text/css" href="typeQuestion/sequence/sequenceListe.css" />
+        <link rel="stylesheet" type="text/css" href="typeQuestion/textesTrous/texteTrousDrop.css" />
+        <link rel="stylesheet" type="text/css" href="typeQuestion/textesTrous/texteTrousDrag.css" />
+   		<link rel="stylesheet" type="text/css" href="typeQuestion/RC/RC.css" />   		 
+   		<link rel="stylesheet"  type="text/css" href="typeQuestion/association/assMatch.css"/>
+   		<link rel="stylesheet" href="typeQuestion/CW/oy-cword-1.0/css/base.css" type="text/css">
+		<link rel="stylesheet" type="text/css" href="lib/jqueryAlert/jquery.alerts.css" media="screen"/>
+		<link rel="stylesheet" type="text/css" href="lib/fancybox/jquery.fancybox.css" media="screen" />
+		
+
+		<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+		
+		<script type="text/javascript" src="lib/jquery/jquery.tools.min.js"></script>
+		
+		<!-- theme pour le container du quiz -->
+		<link rel="stylesheet" type="text/css" href="lib/jquery-ui/css/dot-luv/jquery-ui-1.8.23.custom.css" />
+		<script type="text/javascript" src="lib/jquery-ui/js/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-ui/js/jquery-ui-1.8.23.custom.min.js"></script>
+		
+		<!-- theme du question_wrapper -->
+		<link href="lib/jquery-ui/css/question_wrapper/jquery-ui-1.9.1.custom.css" rel="stylesheet" type="text/css">
+		<script src="lib/jquery-ui/js/jquery-1.8.2.js"></script>
+		<script src="lib/jquery-ui/js/jquery-ui-1.9.1.custom.js"></script>
+
+		
+		<script src="lib/touchPunch/jquery.ui.touch-punch.js"></script>
+		<script type="text/javascript" src="lib/fancybox/jquery.fancybox.js"></script>		
+		<script type="text/javascript" src="lib/jqueryAlert/jquery.alerts.js"></script>
+		
+		
+		
+		<script type="text/javascript" src="lib/jwplayer/jwplayer.js"></script>
+		<script type="text/javascript" src="lib/jwplayer/jwconfig.js"></script>
+		<script type="text/javascript" src="utils.js"></script>
+		<script type="text/javascript" src="lib/jquery.imagemapster.js"></script>
+		
+		<script type="text/javascript" src="typeQuestion/slideUtils.js"></script>
+		<script type="text/javascript" src="typeQuestion/TF/trueFalse.js"></script>
+		<script type="text/javascript" src="typeQuestion/association/association.js"></script>
+		<script type="text/javascript" src="typeQuestion/HS/hotSpot.js"></script>
+		<script type="text/javascript" src="typeQuestion/MC/multipleChoice.js"></script>
+		<script type="text/javascript" src="typeQuestion/MR/multipleResponse.js"></script>
+		<script type="text/javascript" src="typeQuestion/sequence/sequenceDD.js"></script>     
+		<script type="text/javascript" src="typeQuestion/sequence/sequenceListe.js"></script>                       
+  		<script type="text/javascript" src="typeQuestion/textesTrous/texteTrousDrop.js"></script>                       
+   		<script type="text/javascript" src="typeQuestion/textesTrous/texteTrousDrag.js"></script>
+   		<script type="text/javascript" src="typeQuestion/RC/RC.js"></script>
+   		<script type="text/javascript" src="typeQuestion/association/assMatch.js"></script>
+		<script type="text/javascript" src="typeQuestion/CW/crossword.js"></script>
+		<script type="text/javascript" src="typeQuestion/CW/MJweaver.js"></script>
+		<script type="text/javascript" src="typeQuestion/CW/oy-cword-1.0/js/oyClue.js"> </script>
+		<script type="text/javascript" src="typeQuestion/CW/oy-cword-1.0/js/oyMenu.js"> </script>
+		<script type="text/javascript" src="typeQuestion/CW/oy-cword-1.0/js/oyMisc.js"> </script>
+		<script type="text/javascript" src="typeQuestion/CW/oy-cword-1.0/js/oyPuzzle.js"> </script>
+	</head>
+	
+	<body >
+		<div>
+			<br />
+		<div id = "quiz_container">
+			
+			<div id="quiz_tools">
+				<span id="quiz_title" style="text-align:left;">Quizz CFORP</span><span id="timer"><br/></span> <span id="question_status_text" ></span>
+			</div>
+			<div id="question_wrapper">
+				<div id="question_container" >
+					
+				</div>
+				<div id="question_status"  >
+					<img id="question_status_img" style="display:none;float:right; width:45px; height:45px;">
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			
+			<div id="quiz_validate"></div>
+			
+			<div id ="quiz_nav">
+				<input type ="button" id="question_next" value = "Suivant" style="display:none; float:right;"/>
+				<input type ="button" id="question_validate" value ="Valider" style="display:none; float: right;"/>
+				<input type ="button" id="question_prev" value = "Précédent" style="display:none; float:right;"/>
+				<span id="question_num"></span> 
+
+				<input type ="button" id="review_quiz" value ="Revoir le quiz" style="display:none; float:right;"/>		
+				<div style="clear:both;"></div>
+			</div>
+			
+		</div>
+		</div>	
+		
+		<div id="quiz_sounds">
+			<div id="quizSound_correct"></div>
+			<div id="quizSound_incorrect"></div>
+			<div id="quizSound_hover"></div>
+			<div id="quizSound_select"></div>
+			<div id="quizSound_notAnswered"></div>
+			
+		</div>
+		
+		<script>
+
+		</script>
+		
+		<script type="text/javascript" src="input/quizSource.js"></script>
+		<!-- <script type="text/javascript" src="input/questionSourceTest.js" ></script> -->
+		 <script type="text/javascript" src="input/questionSource.js" ></script>
+		 <!-- <script type="text/javascript" src="input/questionSourceq1.js" ></script> -->
+		 <!-- <script type="text/javascript" src="input/questionSourceHotSpot.js"></script> -->
+		<!-- <script type="text/javascript" src="input/mcInput.js" ></script> -->
+		<!-- <script type="text/javascript" src="input/questionSourceAssImage.js" ></script> -->
+		<!-- <script type="text/javascript" src="input/questionSourceRC.js" ></script> -->
+		<!-- <script type="text/javascript" src="input/questionSourceAssociation.js"></script> -->
+		<!-- <script type="text/javascript" src="input/questionSourceq3.js"></script> -->
+		<!-- <script type="text/javascript" src="input/questionSourceTextTrousDrag.js"></script> -->
+		<!-- <script type="text/javascript" src="input/questionSourceTextTrousDD.js"></script> -->
+		<!-- <script type="text/javascript" src="input/questionSourceSequence.js"></script> -->
+		<script type="text/javascript" src="slide.js"></script>
+		<script type="text/javascript" src="controller.js"></script>
+		<script type="text/javascript" src="lib/quizSound.js"></script>
+		<script type="text/javascript" src="lib/init.js"></script>
+	</body>
+	
+</html>
